@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, Moon, Sun, Menu } from 'lucide-react';
+import { ChevronDown, Moon, Sun } from 'lucide-react';
 
 interface NavbarProps {
   theme: 'dark' | 'light';
