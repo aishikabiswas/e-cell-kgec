@@ -82,10 +82,10 @@ export default function Hero() {
 
             <div className="relative z-[1] w-full pt-4 pb-4 flex flex-col max-w-[1200px] mx-auto px-6">
                 {/* Bento Grid */}
-                <div className="grid grid-cols-[1.4fr_1fr] grid-rows-[1fr_1fr] gap-4 flex-1 min-h-0 relative">
+                <div className="grid grid-cols-[1.4fr_1fr] grid-rows-[1fr_1fr] gap-4 flex-1 min-h-0 relative max-md:flex max-md:flex-col max-md:min-h-0">
 
                     {/* === LEFT BOX — Main Content === */}
-                    <div className={`row-span-2 col-span-1 rounded-3xl border border-[var(--border)] overflow-hidden relative bg-[var(--bg-card)] flex items-center p-12 transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}>
+                    <div className={`row-span-2 col-span-1 rounded-3xl border border-[var(--border)] overflow-hidden relative bg-[var(--bg-card)] flex items-center p-12 transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : 'max-md:w-full max-md:min-h-[500px] max-md:flex-1'}`}>
                         <div className="flex flex-col">
                             <div className="inline-flex items-center gap-2 px-[18px] py-2 bg-[var(--accent-dim)] border border-[rgba(247,147,30,0.25)] rounded-full text-xs font-semibold text-[var(--accent)] uppercase tracking-wider mb-6 w-fit animate-fade-in-up">
                                 <Sparkles size={14} />
@@ -132,7 +132,7 @@ export default function Hero() {
 
                     {/* === RIGHT TOP — Gallery Box === */}
                     <div
-                        className={`rounded-3xl border overflow-hidden relative bg-[var(--accent)] border-[rgba(247,147,30,0.3)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'gallery' ? 'col-[1/-1] row-[1/-1] z-[5] !cursor-default !p-11' : 'col-start-2 row-start-1'} ${expanded === 'team' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
+                        className={`rounded-3xl border overflow-hidden relative bg-[var(--accent)] border-[rgba(247,147,30,0.3)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'gallery' ? 'col-[1/-1] row-[1/-1] z-[5] !cursor-default !p-11 max-md:fixed max-md:top-[90px] max-md:left-4 max-md:right-4 max-md:bottom-4 max-md:z-[2000] max-md:rounded-3xl max-md:shadow-2xl' : 'col-start-2 row-start-1 max-md:w-full max-md:h-[250px]'} ${expanded === 'team' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
                         onClick={() => handleExpand('gallery')}
                     >
                         {expanded === 'gallery' && (
@@ -204,7 +204,7 @@ export default function Hero() {
 
                     {/* === RIGHT BOTTOM — Team Box === */}
                     <div
-                        className={`rounded-3xl border border-[var(--border)] relative bg-[var(--bg-secondary)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'team' ? 'col-[1/-1] row-[1/-1] z-[5] !cursor-default !p-11' : 'col-start-2 row-start-2'} ${expanded === 'gallery' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
+                        className={`rounded-3xl border border-[var(--border)] relative bg-[var(--bg-secondary)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'team' ? 'col-[1/-1] row-[1/-1] z-[5] !cursor-default !p-11 max-md:fixed max-md:top-[90px] max-md:left-4 max-md:right-4 max-md:bottom-4 max-md:z-[2000] max-md:rounded-3xl max-md:shadow-2xl' : 'col-start-2 row-start-2 max-md:w-full max-md:h-[250px]'} ${expanded === 'gallery' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
                         onClick={() => handleExpand('team')}
                     >
                         {expanded === 'team' && (
