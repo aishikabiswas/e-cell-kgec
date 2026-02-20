@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles, X, Images, Users, ChevronRight, Linkedin } from '
 import Stack from '../components/Stack';
 import Marquee from '../components/Marquee';
 import Folder from '../components/Folder';
+import { Highlighter } from '../components/magicui/highlighter';
 
 type ExpandedPanel = null | 'gallery' | 'team';
 
@@ -94,7 +95,13 @@ export default function Hero() {
 
                             <h1 className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.12] mb-[18px] animate-fade-in-up [animation-delay:0.1s]">
                                 Igniting the Spirit of{' '}
-                                <span className="bg-gradient-to-br from-[var(--accent)] via-[#ffd700] to-[var(--accent)] bg-[length:200%_200%] bg-clip-text text-transparent animate-gradient-shift">Innovation</span>
+                                <Highlighter
+                                    action="underline"
+                                    color="#000000ff"
+                                    className="bg-gradient-to-br from-[var(--accent)] via-[#ffd700] to-[var(--accent)] bg-[length:200%_200%] bg-clip-text text-transparent animate-gradient-shift font-extrabold inline-block"
+                                >
+                                    Innovation
+                                </Highlighter>
                             </h1>
 
                             <p className="text-base max-w-[480px] mb-7 leading-relaxed animate-fade-in-up [animation-delay:0.2s]">

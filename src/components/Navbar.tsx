@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, Moon, Sun } from 'lucide-react';
-
-interface NavbarProps {
-  theme: 'dark' | 'light';
-  toggleTheme: () => void;
-}
+import { ChevronDown } from 'lucide-react';
+import { AnimatedThemeToggler } from './ui/animated-theme-toggler';
 
 const navItems = [
   {
@@ -32,7 +28,7 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar({ theme, toggleTheme }: NavbarProps) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -86,13 +82,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
         {/* Right Section */}
         <div className="flex items-center gap-2 z-[1001]">
-          <button
-            onClick={toggleTheme}
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-[var(--border)] text-[var(--text-secondary)] transition-all duration-150 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent-dim)] bg-transparent"
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Moon size={18} /> : <Sun size={18} />}
-          </button>
+          <AnimatedThemeToggler />
 
           <a
             href="#contact"
