@@ -6,6 +6,7 @@ import About from './sections/About';
 import Events from './sections/Events';
 import PastEvents from './sections/PastEvents';
 import Sponsors from './sections/Sponsors';
+import PastSpeakers from './sections/PastSpeakers';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
@@ -32,6 +33,7 @@ function App() {
         <Events />
         <PastEvents />
         <Sponsors />
+        <PastSpeakers />
         <Contact />
       </main>
       <Footer />

@@ -29,7 +29,11 @@ export default function Sponsors() {
 
     return (
         <section ref={sectionRef} className="relative py-24 bg-[var(--bg-secondary)] overflow-hidden" id="sponsors">
-            <div className="w-full max-w-[1400px] mx-auto px-6">
+            {/* Ambient glow */}
+            <div className="absolute -top-32 right-[-60px] w-[500px] h-[400px] rounded-full bg-[var(--accent)] opacity-[0.07] blur-[120px] pointer-events-none z-0 animate-pulse-glow" />
+            <div className="absolute bottom-[-80px] left-[-40px] w-[350px] h-[280px] rounded-full bg-[var(--accent)] opacity-[0.05] blur-[100px] pointer-events-none z-0 animate-pulse-glow [animation-direction:reverse] [animation-duration:8s]" />
+
+            <div className="w-full max-w-[1400px] mx-auto px-6 relative z-10">
                 {/* Section Heading */}
                 <div className="text-center mb-16 max-w-4xl mx-auto">
                     <div className="flex justify-center items-center gap-2 mb-6">

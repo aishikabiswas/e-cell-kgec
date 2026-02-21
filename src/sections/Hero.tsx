@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowRight, Sparkles, X, Images, Users, ChevronRight, Linkedin } from 'lucide-react';
 import Stack from '../components/Stack';
 import Marquee from '../components/Marquee';
 import Folder from '../components/Folder';
 import { Highlighter } from '../components/magicui/highlighter';
+import { useTheme } from '../hooks/useTheme';
 
 type ExpandedPanel = null | 'gallery' | 'team';
 
@@ -66,6 +67,18 @@ interface Member {
 export default function Hero() {
     const [expanded, setExpanded] = useState<ExpandedPanel>(null);
     const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+    const { isDark } = useTheme();
+    const underlineColor = isDark ? '#ffffff' : '#000000';
+
+    // Lock body scroll when a panel is open
+    useEffect(() => {
+        if (expanded) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [expanded]);
 
     const handleExpand = (panel: ExpandedPanel) => {
         setExpanded(expanded === panel ? null : panel);
@@ -80,7 +93,6 @@ export default function Hero() {
                 <div className="absolute w-[500px] h-[500px] rounded-full bg-[var(--accent)] top-[-150px] right-[-50px] opacity-10 blur-[120px] animate-pulse-glow" />
                 <div className="absolute w-[350px] h-[350px] rounded-full bg-[var(--accent)] bottom-[-80px] left-[-30px] opacity-[0.06] blur-[120px] animate-pulse-glow [animation-direction:reverse] [animation-duration:8s]" />
             </div>
-
             <div className="relative z-[1] w-full pt-4 pb-4 flex flex-col max-w-[1200px] mx-auto px-6">
                 {/* Bento Grid */}
                 <div className="grid grid-cols-[1.4fr_1fr] grid-rows-[1fr_1fr] gap-4 flex-1 min-h-0 relative max-md:flex max-md:flex-col max-md:min-h-0">
@@ -97,7 +109,7 @@ export default function Hero() {
                                 Igniting the Spirit of{' '}
                                 <Highlighter
                                     action="underline"
-                                    color="#000000ff"
+                                    color={underlineColor}
                                     className="bg-gradient-to-br from-[var(--accent)] via-[#ffd700] to-[var(--accent)] bg-[length:200%_200%] bg-clip-text text-transparent animate-gradient-shift font-extrabold inline-block"
                                 >
                                     Innovation
@@ -139,7 +151,7 @@ export default function Hero() {
 
                     {/* === RIGHT TOP — Gallery Box === */}
                     <div
-                        className={`rounded-3xl border overflow-hidden relative bg-[var(--accent)] border-[rgba(247,147,30,0.3)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'gallery' ? 'col-[1/-1] row-[1/-1] z-[5] !cursor-default !p-11 max-md:fixed max-md:top-[90px] max-md:left-4 max-md:right-4 max-md:bottom-4 max-md:z-[2000] max-md:rounded-3xl max-md:shadow-2xl' : 'col-start-2 row-start-1 max-md:w-full max-md:h-[250px]'} ${expanded === 'team' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
+                        className={`rounded-3xl border overflow-hidden relative bg-[var(--accent)] border-[rgba(247,147,30,0.3)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'gallery' ? 'col-[1/-1] row-[1/-1] z-[2000] !cursor-default !p-11 max-md:fixed max-md:top-[90px] max-md:left-4 max-md:right-4 max-md:bottom-4 max-md:rounded-3xl max-md:shadow-2xl' : 'col-start-2 row-start-1 max-md:w-full max-md:h-[250px]'} ${expanded === 'team' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
                         onClick={() => handleExpand('gallery')}
                     >
                         {expanded === 'gallery' && (
@@ -211,7 +223,7 @@ export default function Hero() {
 
                     {/* === RIGHT BOTTOM — Team Box === */}
                     <div
-                        className={`rounded-3xl border border-[var(--border)] relative bg-[var(--bg-secondary)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'team' ? 'col-[1/-1] row-[1/-1] z-[5] !cursor-default !p-11 max-md:fixed max-md:top-[90px] max-md:left-4 max-md:right-4 max-md:bottom-4 max-md:z-[2000] max-md:rounded-3xl max-md:shadow-2xl' : 'col-start-2 row-start-2 max-md:w-full max-md:h-[250px]'} ${expanded === 'gallery' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
+                        className={`rounded-3xl border border-[var(--border)] overflow-hidden relative bg-[var(--bg-secondary)] cursor-pointer p-7 flex flex-col justify-center transition-all duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${expanded === 'team' ? 'col-[1/-1] row-[1/-1] z-[2000] !cursor-default !p-11 max-md:fixed max-md:top-[90px] max-md:left-4 max-md:right-4 max-md:bottom-4 max-md:rounded-3xl max-md:shadow-2xl' : 'col-start-2 row-start-2 max-md:w-full max-md:h-[250px]'} ${expanded === 'gallery' ? 'absolute w-0 h-0 opacity-0 pointer-events-none' : ''}`}
                         onClick={() => handleExpand('team')}
                     >
                         {expanded === 'team' && (
@@ -283,7 +295,10 @@ export default function Hero() {
                                 <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar flex flex-col gap-8 pb-4">
                                     {/* Faculty Section */}
                                     <div>
-                                        <h4 className="text-xl font-bold text-[var(--accent)] mb-4 sticky top-0 bg-[var(--bg-card)] py-2 z-10 border-b border-[var(--border)] shadow-sm">Faculty Body</h4>
+                                        <h4 className="text-[1.35rem] font-bold text-[var(--accent)] mb-5 flex items-center gap-2">
+                                            <span>Faculty Body</span>
+                                            <div className="flex-1 h-px bg-gradient-to-r from-[var(--border)] to-transparent ml-4"></div>
+                                        </h4>
                                         <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
                                             {facultyMembers.map((m, i) => (
                                                 <div
@@ -305,8 +320,11 @@ export default function Hero() {
                                     </div>
 
                                     {/* Leading Members Section */}
-                                    <div>
-                                        <h4 className="text-xl font-bold text-[var(--accent)] mb-4 sticky top-0 bg-[var(--bg-card)] py-2 z-10 border-b border-[var(--border)] shadow-sm">Leading Members</h4>
+                                    <div className="mt-4">
+                                        <h4 className="text-[1.35rem] font-bold text-[var(--accent)] mb-5 flex items-center gap-2">
+                                            <span>Leading Members</span>
+                                            <div className="flex-1 h-px bg-gradient-to-r from-[var(--border)] to-transparent ml-4"></div>
+                                        </h4>
                                         <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
                                             {leadingMembers.map((m, i) => (
                                                 <div
@@ -329,8 +347,11 @@ export default function Hero() {
                                     </div>
 
                                     {/* Convenors Section */}
-                                    <div>
-                                        <h4 className="text-xl font-bold text-[var(--accent)] mb-4 sticky top-0 bg-[var(--bg-card)] py-2 z-10 border-b border-[var(--border)] shadow-sm">Convenors</h4>
+                                    <div className="mt-4">
+                                        <h4 className="text-[1.35rem] font-bold text-[var(--accent)] mb-5 flex items-center gap-2">
+                                            <span>Conveners</span>
+                                            <div className="flex-1 h-px bg-gradient-to-r from-[var(--border)] to-transparent ml-4"></div>
+                                        </h4>
                                         <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
                                             {convenors.map((m, i) => (
                                                 <div

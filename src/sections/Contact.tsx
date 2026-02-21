@@ -2,8 +2,11 @@ import { Mail, Send, MapPin } from 'lucide-react';
 
 export default function Contact() {
     return (
-        <section className="py-30 max-md:py-20 bg-[var(--bg-secondary)]" id="contact">
-            <div className="max-w-[1200px] mx-auto px-6">
+        <section className="relative py-30 max-md:py-20 bg-[var(--bg-secondary)] overflow-hidden" id="contact">
+            {/* Ambient glow */}
+            <div className="absolute -top-32 left-[-60px] w-[500px] h-[400px] rounded-full bg-[var(--accent)] opacity-[0.07] blur-[120px] pointer-events-none z-0 animate-pulse-glow" />
+            <div className="absolute bottom-[-80px] right-[-40px] w-[350px] h-[280px] rounded-full bg-[var(--accent)] opacity-[0.05] blur-[100px] pointer-events-none z-0 animate-pulse-glow [animation-direction:reverse] [animation-duration:8s]" />
+            <div className="max-w-[1200px] mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                     {/* Info */}
                     <div>

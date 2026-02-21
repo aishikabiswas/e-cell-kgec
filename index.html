@@ -1,15 +1,32 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Cell KGEC | Entrepreneurship & Innovation Cell</title>
-    <meta name="description" content="The official Entrepreneurship Cell of KGEC — empowering innovation, leadership, and startup culture." />
-    <meta name="keywords" content="E-Cell KGEC, Entrepreneurship Cell, Kalyani Government Engineering College, startup, innovation" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="en">
+
+<head>
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme') ?? 'light';
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Cell KGEC | Entrepreneurship & Innovation Cell</title>
+  <meta name="description"
+    content="The official Entrepreneurship Cell of KGEC — empowering innovation, leadership, and startup culture." />
+  <meta name="keywords"
+    content="E-Cell KGEC, Entrepreneurship Cell, Kalyani Government Engineering College, startup, innovation" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
